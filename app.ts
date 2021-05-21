@@ -1,12 +1,14 @@
 import * as dotenv from "dotenv";
 import express from "express";
-import * as bodyParser from "body-parser";
 import { userRouter } from "./routes";
 
 const app = express();
 dotenv.config();
 
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// routes declaration
 app.use("/users", userRouter);
 
 app.listen(process.env.PORT, () => {

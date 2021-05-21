@@ -8,6 +8,7 @@ export const create = (user: User, callback: Function) => {
   db.query(queryString, [user.name, user.age], (err, result) => {
     if (err) {
       callback(err);
+      return;
     }
 
     const insertId = (<OkPacket>result).insertId;
@@ -21,6 +22,7 @@ export const findOne = (userId: number, callback: Function) => {
   db.query(queryString, userId, (err, result) => {
     if (err) {
       callback(err);
+      return;
     }
     const row = (<RowDataPacket>result)[0];
     console.log(row);
@@ -35,9 +37,10 @@ export const findOne = (userId: number, callback: Function) => {
 export const findAll = (callback: Function) => {
   const queryString = `SELECT * FROM Users`;
 
-  db.query(queryString, (err, result) => {
+  db.query(queryString, null, (err, result) => {
     if (err) {
       callback(err);
+      return;
     }
 
     const rows = <RowDataPacket[]>result;
