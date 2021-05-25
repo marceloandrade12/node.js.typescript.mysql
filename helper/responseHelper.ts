@@ -3,7 +3,9 @@
  * @param responseData response to be handle
  * @returns
  */
-export const sendSuccessResponse = (responseData: any): Record<string, any> => {
+export const sendSuccessResponse = <T>(
+  responseData: T
+): { data: T; sucess: boolean; time: Date } => {
   return {
     data: responseData,
     sucess: true,
@@ -16,9 +18,9 @@ export const sendSuccessResponse = (responseData: any): Record<string, any> => {
  * @param responseData response to be handle
  * @returns
  */
-export const sendErrorResponse = (
-  responseData: Record<string, any>
-): Record<string, any> => {
+export const sendErrorResponse = <T>(
+  responseData: T
+): { error: T; sucess: boolean; time: Date } => {
   return {
     error: responseData,
     sucess: false,
