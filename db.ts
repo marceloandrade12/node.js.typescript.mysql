@@ -24,14 +24,12 @@ export const db = {
   query: (queryString: string, sqlArgs: any, callback: callbackFunction) => {
     pool.getConnection(function (err, connection) {
       if (err) {
-        console.log(err);
         return callback(err);
       }
 
       connection.query(queryString, sqlArgs, function (err, results) {
         connection.release(); // always put connection back in pool after last query
         if (err) {
-          console.log(err);
           return callback(err);
         }
         callback(null, results);
