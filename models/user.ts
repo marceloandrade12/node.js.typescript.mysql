@@ -17,7 +17,7 @@ export const create = (user: User, callback: Function) => {
 };
 
 export const findOneByUsername = (username: string, callback: Function) => {
-  const queryString = `SELECT * FROM users WHERE username=?`;
+  const queryString = `SELECT * FROM users WHERE BINARY username=?`;
 
   db.query(queryString, username, (err, result) => {
     if (err) {
