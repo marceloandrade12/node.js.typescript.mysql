@@ -3,9 +3,12 @@ import express from "express";
 import { addRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
 import * as swaggerDocument from "./swagger.json";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
