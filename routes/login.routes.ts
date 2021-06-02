@@ -9,6 +9,9 @@ import { LoginResponse } from "../types";
 
 const loginRouter = express.Router();
 
+const expiresIn = process.env.SECRET_EXPIRES || "3600000";
+const expiresInUnit = process.env.SECRET_EXPIRES_UNIT || "milliseconds";
+
 loginRouter.post("/login", async (req: Request, res: Response) => {
   loginModel.login(
     req.body.user,
@@ -20,7 +23,9 @@ loginRouter.post("/login", async (req: Request, res: Response) => {
         return res.status(200).json(
           sendSuccessResponse<LoginResponse>({
             auth: true,
-            token: token,
+            token,
+            expiresIn,
+            expiresInUnit,
           })
         );
       }

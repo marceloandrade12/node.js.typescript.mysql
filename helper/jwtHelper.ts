@@ -5,7 +5,7 @@ import { LoginResponse } from "../types";
 dotenv.config();
 
 const secretOrPrivateKey = process.env.SECRET || "";
-const expiresIn = process.env.SECRET_EXPIRES || "5min"; // by default 5 minutes
+const expiresIn = process.env.SECRET_EXPIRES || "3600000"; // by default 3600000 millisecond ( 60 minutes )
 
 /**
  * Method to generate JWT Token
